@@ -131,7 +131,27 @@ contract FamilyTree{
                 familyTree[child].parents.push(familyTree[msg.sender].spouse);
             }
         }
+        function onDeath(address deceased,string deathCerti) public {
+            familyTree[deceased].status=-1;
+            familyTree[deceased].deathCerti=deathCerti;
+            
+            
+        }
         
+        
+        function mairrage(address wife,address husband) public{
+            familyTree[husband].spouse=wife;
+            familyTree[husband].marriageStatus=1;
+            
+            familyTree[wife].spouse=msg.sender;
+            familyTree[wife].marriageStatus=1;
+            
+        }
+        
+        function divorce(address wife,address husband) public {
+            familyTree[husband].marriageStatus=-1;
+            familyTree[wife].marriageStatus=-1;
+        }
 
         
         
