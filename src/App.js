@@ -4,7 +4,7 @@ import Register from './components/REGISTRATION/Registration';
 import Header from './components/HEADER/Header';
 
 class App extends Component {
-  
+
   render() {
     return (
       <div>
