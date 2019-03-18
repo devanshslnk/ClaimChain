@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/expresss_app/node_modules
 
 # testing
 /coverage

@@ -18,6 +18,7 @@ contract FamilyTree{
             string birthCerti;
             string adhaar;
             address spouse;
+            int8 marriageStatus;
             address[] parents;
             address[] children;
             int256 numberOfChildren;
@@ -35,7 +36,8 @@ contract FamilyTree{
             int128 dob,
             int8 gender,
             string birthCerti,
-            string adhaar
+            string adhaar,
+            int8 marriageStatus
             ) public {
             
             address[] memory parents;
@@ -53,6 +55,7 @@ contract FamilyTree{
                     birthCerti,
                     adhaar,
                     0x0,
+                    marriageStatus,
                     parents,
                     children,
                     0,
@@ -72,7 +75,9 @@ contract FamilyTree{
             int128 dob,
             string birthCerti,
             int8 gender,
-            string adhaar) public {
+            string adhaar,
+            int8 marriageStatus
+            ) public {
                 address[] memory parents;
                 address[] memory children;
                 familyTree[publicKey]=FamilyNode(
@@ -87,6 +92,7 @@ contract FamilyTree{
                     birthCerti,
                     adhaar,
                     0x0,
+                    marriageStatus,
                     parents,
                     children,
                     0,
@@ -131,6 +137,7 @@ contract FamilyTree{
                 familyTree[child].parents.push(familyTree[msg.sender].spouse);
             }
         }
+        
         function onDeath(address deceased,string deathCerti) public {
             familyTree[deceased].status=-1;
             familyTree[deceased].deathCerti=deathCerti;
@@ -152,7 +159,13 @@ contract FamilyTree{
             familyTree[husband].marriageStatus=-1;
             familyTree[wife].marriageStatus=-1;
         }
-
+        
+        
+        
+        function check() public view returns (int256){
+            return numberOfFamilyMemmber;
+            
+        }
         
         
         
