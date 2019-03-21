@@ -2,6 +2,7 @@
 
 # dependencies
 node_modules/
+./EJS/node_modules/
 /.pnp
 .pnp.js
 ./express_app/node_modules
