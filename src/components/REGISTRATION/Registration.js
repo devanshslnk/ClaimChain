@@ -58,6 +58,11 @@ class registration extends Component {
   Acc = async(event) =>{
     // console.log(web3.eth.accounts.create());
   }
+
+
+
+
+
   
   render() {
     return (
@@ -89,6 +94,10 @@ class registration extends Component {
         <Button onClick={ this.Acc }>Create Acc</Button>
         <br></br>
         <Button onClick={ this.Enc }>Encrypt Data</Button>
+        <br></br>
+        <Button onClick={ this.Compress }>Compress Data</Button>
+        <br></br>
+
       </Form>
     );
   }
