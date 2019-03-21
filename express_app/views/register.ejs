@@ -13,9 +13,27 @@
     <title>Signin ClaimChain</title>
   </head>
   <body style="background-color: #4abdac">
+    <p><%= message %></p>
     <form method="POST">
-        <input name="father_public_key" type="text"/>
+        
+        <input name="first_name" type="text" placeholder="first name"/>
         <br/>
+        <input name="last_name" placeholder="last name" type="text"/>
+        <br/>
+        <input name="dob" placeholder="date  of birth" type="text"/>
+
+        <br/>
+        <select name="gender">
+            <option>
+                male
+            </option>
+            <option>female</option>
+        </select>
+
+        <input name="cipher_text"  placeholder="cipher text" type="text">
+        </br>
+        <input name="privateKey" placeholder='privateKey' type="password">
+        </br>
         <button name="submit" type="submit">Submit</button>
 
 

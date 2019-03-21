@@ -8,38 +8,48 @@ contract FamilyTree{
         
         struct FamilyNode{
             int256 id;
-            address publicKey;
-            bytes32 firstName;
-            bytes32 lastName;
+            string
+            publicKey;
+            string
+            firstName;
+            string
+            lastName;
             int128 dob;
             int128 dod;
-            int8 status;
             int8 gender;
-            string birthCerti;
-            string adhaar;
-            address spouse;
-            address[] parents;
-            address[] children;
+            string
+            spouse;
+            int8 marriageStatus;
+            string
+            [] parents;
+            string
+            [] children;
             int256 numberOfChildren;
-            string deathCerti;
+            string
+            deathCerti;
             
         }
         
-        mapping (address=>FamilyNode) familyTree;
+        mapping (string
+        =>FamilyNode) familyTree;
         
         constructor(
         
-            address publicKey,
-            bytes32 firstName,
-            bytes32 lastName,
+            string
+            publicKey,
+            string
+            firstName,
+            string
+            lastName,
             int128 dob,
             int8 gender,
-            string birthCerti,
-            string adhaar
+            int8 marriageStatus
             ) public {
             
-            address[] memory parents;
-            address[] memory  children;
+            string
+            [] memory parents;
+            string
+            [] memory  children;
  
             FamilyNode memory node=FamilyNode(
                     0,
@@ -47,12 +57,11 @@ contract FamilyTree{
                     firstName,
                     lastName,
                     dob,
-                    0,
                     -1,
+                    
                     gender,
-                    birthCerti,
-                    adhaar,
-                    0x0,
+                    "",
+                    marriageStatus,
                     parents,
                     children,
                     0,
@@ -66,27 +75,33 @@ contract FamilyTree{
                 
         }
         function addFamilyMember
-            (address publicKey,
-            bytes32 firstName,
-            bytes32 lastName,
+            (string
+            publicKey,
+            string
+            firstName,
+            string
+            lastName,
             int128 dob,
-            string birthCerti,
+      
             int8 gender,
-            string adhaar) public {
-                address[] memory parents;
-                address[] memory children;
+     
+            int8 marriageStatus
+            ) public {
+                string
+                [] memory parents;
+                string
+                [] memory children;
                 familyTree[publicKey]=FamilyNode(
                     numberOfFamilyMemmber,
                     publicKey,
                     firstName,
                     lastName,
                     dob,
-                    0,
                     -1,
+                    
                     gender,
-                    birthCerti,
-                    adhaar,
-                    0x0,
+                    "",
+                    marriageStatus,
                     parents,
                     children,
                     0,
@@ -98,61 +113,88 @@ contract FamilyTree{
                 
             }
             
-        function addFather(address  father) public {
-            familyTree[msg.sender].parents.push(father);
-            familyTree[father].children.push(msg.sender);
+        function addFather(string
+        father,string
+        son) public {
+            familyTree[son].parents.push(father);
+            familyTree[father].children.push(son);
             
             // add mother as well
-            if(familyTree[father].spouse!=0x0 && familyTree[msg.sender].parents.length==1){
+            if(bytes(familyTree[father].spouse).length!=0 && familyTree[son].parents.length==1){
             
-                familyTree[familyTree[father].spouse].children.push(msg.sender);
-                familyTree[msg.sender].parents.push(familyTree[father].spouse);
+                familyTree[familyTree[father].spouse].children.push(son);
+                familyTree[son].parents.push(familyTree[father].spouse);
             }
             
         }
-        function addMother(address mother) public {
-            familyTree[msg.sender].parents.push(mother);
-            familyTree[mother].children.push(msg.sender);
+        function addMother(string
+        mother,string
+        son) public {
+            familyTree[son].parents.push(mother);
+            familyTree[mother].children.push(son);
             
             // add father as well 
-            if(familyTree[mother].spouse!=0x0 && familyTree[msg.sender].parents.length==1){
-                familyTree[familyTree[mother].spouse].children.push(msg.sender);
-                familyTree[msg.sender].parents.push(familyTree[mother].spouse);
+            if(bytes(familyTree[mother].spouse).length !=0 && familyTree[son].parents.length==1){
+                familyTree[familyTree[mother].spouse].children.push(son);
+                familyTree[son].parents.push(familyTree[mother].spouse);
             }
         }
         
-        function addChild(address child) public {
-            familyTree[msg.sender].children.push(child);
-            familyTree[child].parents.push(msg.sender);
+        function addChild(string
+        child,string
+        father) public {
+            familyTree[father].children.push(child);
+            familyTree[child].parents.push(father);
             
             // add the other parent
-            if(familyTree[msg.sender].spouse!=0x0){
-                familyTree[familyTree[msg.sender].spouse].children.push(child);
-                familyTree[child].parents.push(familyTree[msg.sender].spouse);
+            if(bytes(familyTree[father].spouse).length!=0){
+                familyTree[familyTree[father].spouse].children.push(child);
+                familyTree[child].parents.push(familyTree[father].spouse);
             }
         }
-        function onDeath(address deceased,string deathCerti) public {
-            familyTree[deceased].status=-1;
+        
+        function onDeath(string
+        deceased,string
+        deathCerti) public {
+            familyTree[deceased].dod=-1;
             familyTree[deceased].deathCerti=deathCerti;
             
             
         }
         
         
-        function mairrage(address wife,address husband) public{
+        function mairrage(string
+        wife,string
+        husband) public{
             familyTree[husband].spouse=wife;
             familyTree[husband].marriageStatus=1;
             
-            familyTree[wife].spouse=msg.sender;
+            familyTree[wife].spouse=husband;
             familyTree[wife].marriageStatus=1;
             
         }
         
-        function divorce(address wife,address husband) public {
+        function divorce(string
+        wife,string
+        husband) public {
             familyTree[husband].marriageStatus=-1;
             familyTree[wife].marriageStatus=-1;
         }
-
+        
+        
+        
+        function check() public view returns (int256){
+            return numberOfFamilyMemmber;
+            
+        }
+        function get(string publicKey) public view returns (string,string,int8){
+            FamilyNode memory node=familyTree[publicKey];
+            return (
+                node.firstName,
+                node.lastName,
+                node.gender
+                );
+        }   
         
         
         
