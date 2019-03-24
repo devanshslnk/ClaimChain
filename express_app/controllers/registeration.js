@@ -15,37 +15,57 @@ module.exports=(app)=>{
         var last_name=req.body.last_name;
         var dob=req.body.dob;
         var cipher_text=JSON.parse(req.body.cipher_text);
-        var privateKey=req.body.privateKey;
+        var parentPrivateKey=req.body.privateKey;
         var gender=req.body.gender;
+        if(gender==="male"){
+            gender=0
+        }else{
+            gender=1
+        }
         
         try
         {   
             var decrypted=await ethCrypto.decryptWithPrivateKey(
-                privateKey,
+                parentPrivateKey,
                 cipher_text
             );
 
-            var newUserPrivate=decrypted.slice(0,66);
+            
             var provider=new HDwalletprovider(
-                privateKey,
+                parentPrivateKey,
                 'https://ropsten.infura.io/v3/da4d3f3021fd4ada9c1e70a4b607e74f'
             );
             const web3=new Web3(provider);
             const accounts=await web3.eth.getAccounts();
             const contract=new web3.eth.Contract(abi,address);
             
-            var publicKey=ethCrypto.publicKeyByPrivateKey(privateKey);
-            var compressed=ethCrypto.publicKey.compress(publicKey);
+            // Parent
+            var parentPublicKey=ethCrypto.publicKeyByPrivateKey(parentPrivateKey);
+            var parentCompressed=ethCrypto.publicKey.compress(parentPublicKey);
+            var parentAddress=ethCrypto.publicKey.toAddress(
+                parentPublicKey
+            );
             
-            var memberCount=await contract.methods.get(compressed).call();
-            console.log(memberCount);
-            var newUserPublic=ethCrypto.publicKeyByPrivateKey(
-                newUserPrivate
-            )
-            var newUserCompressed=ethCrypto.publicKey.compress(newUserPublic);
-            console.log(newUserCompressed);
             
-            // var contractReceipt=await contract.methods.addFamilyMember()
+            // Child
+            var childPrivateKey=decrypted.slice(0,66);
+            var childPublicKey=ethCrypto.publicKeyByPrivateKey(
+                childPrivateKey
+            );
+            var childAdress=ethCrypto.publicKey.toAddress(
+                childPublicKey
+            );
+            var childCompressed=ethCrypto.publicKey.compress(childPublicKey);
+            
+
+            var contractReceiptMember=await contract.methods.addFamilyMember(childCompressed,first_name,last_name,1,gender,0).send({
+                "from":parentAddress
+            });
+            console.log(contractReceiptMember);
+            var contractReceiptChild=await contract.methods.addChild(childCompressed,parentCompressed).send({
+                "from":parentAddress
+            });
+            console.log(contractReceiptChild);
 
             
 
