@@ -1,5 +1,5 @@
 pragma solidity ^0.4.0;
-import "./Serialitysol.sol";
+import "./Seriality.sol";
  
 import "./BytesToTypes.sol";
 import "./TypesToBytes.sol";
@@ -9,7 +9,15 @@ contract FamilyTree is TypesToBytes,SizeOf{
         
         int256 public numberOfFamilyMemmber;
         
-        
+        mapping (address => bool) public Wallets;
+
+        function setWallet(address _wallet) public{
+            Wallets[_wallet]=true;
+        }
+
+        function contains(address _wallet) returns (bool){
+            return Wallets[_wallet];
+        }        
         
         struct FamilyNode{
             int256 id;
@@ -75,7 +83,9 @@ contract FamilyTree is TypesToBytes,SizeOf{
                 );
                 
                 familyTree[publicKey]=node;
+                // setWallet(address);
                 numberOfFamilyMemmber++;
+                
                 
                 
         }
