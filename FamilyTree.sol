@@ -1,6 +1,11 @@
 pragma solidity ^0.4.0;
+import "./Serialitysol.sol";
+ 
+import "./BytesToTypes.sol";
+import "./TypesToBytes.sol";
+import "./SizeOf.sol";
 
-contract FamilyTree{
+contract FamilyTree is TypesToBytes,SizeOf{
         
         int256 public numberOfFamilyMemmber;
         
@@ -82,7 +87,6 @@ contract FamilyTree{
             string
             lastName,
             int128 dob,
-      
             int8 gender,
      
             int8 marriageStatus
@@ -108,7 +112,7 @@ contract FamilyTree{
                     ""
                     
                 );
-                
+                numberOfFamilyMemmber++;
                        
                 
             }
@@ -187,17 +191,30 @@ contract FamilyTree{
             return numberOfFamilyMemmber;
             
         }
-        function get(string publicKey) public view returns (string,string,int8){
+        function get(string publicKey) public view returns (string,string,int8,string){
             FamilyNode memory node=familyTree[publicKey];
             return (
                 node.firstName,
                 node.lastName,
-                node.gender
+                node.gender,
+                node.publicKey
                 );
-        }   
+        }
+        
+        function getChildrenLength(string publicKey) public view returns(uint256){
+
+            return familyTree[publicKey].children.length;
+               
+       }
+        function getChild(string publicKey,uint256 i)public constant  returns(string){
+            return (familyTree[publicKey].children[i]);    
+       }
+       
+        
+        
+ 
         
         
         
-    
     
 }
