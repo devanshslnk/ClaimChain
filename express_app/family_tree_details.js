@@ -5,6 +5,152 @@ const abi=[
 		"constant": false,
 		"inputs": [
 			{
+				"name": "deceased",
+				"type": "string"
+			},
+			{
+				"name": "deathCerti",
+				"type": "string"
+			}
+		],
+		"name": "onDeath",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "publicKey",
+				"type": "string"
+			},
+			{
+				"name": "i",
+				"type": "uint256"
+			}
+		],
+		"name": "getChild",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_wallet",
+				"type": "address"
+			}
+		],
+		"name": "contains",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "publicKey",
+				"type": "string"
+			}
+		],
+		"name": "get",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "int8"
+			},
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "wife",
+				"type": "string"
+			},
+			{
+				"name": "husband",
+				"type": "string"
+			}
+		],
+		"name": "mairrage",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "publicKey",
+				"type": "string"
+			}
+		],
+		"name": "getChildrenLength",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "father",
+				"type": "string"
+			},
+			{
+				"name": "son",
+				"type": "string"
+			}
+		],
+		"name": "addFather",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
 				"name": "child",
 				"type": "string"
 			},
@@ -14,6 +160,38 @@ const abi=[
 			}
 		],
 		"name": "addChild",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "check",
+		"outputs": [
+			{
+				"name": "",
+				"type": "int256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "mother",
+				"type": "string"
+			},
+			{
+				"name": "son",
+				"type": "string"
+			}
+		],
+		"name": "addMother",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -54,39 +232,78 @@ const abi=[
 		"type": "function"
 	},
 	{
-		"constant": false,
+		"constant": true,
 		"inputs": [
 			{
-				"name": "father",
-				"type": "string"
-			},
-			{
-				"name": "son",
-				"type": "string"
+				"name": "",
+				"type": "address"
 			}
 		],
-		"name": "addFather",
-		"outputs": [],
+		"name": "Wallets",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
 		"payable": false,
-		"stateMutability": "nonpayable",
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
-		"constant": false,
+		"constant": true,
 		"inputs": [
 			{
-				"name": "mother",
+				"name": "publicKey",
 				"type": "string"
 			},
 			{
-				"name": "son",
+				"name": "i",
+				"type": "uint256"
+			}
+		],
+		"name": "getParent",
+		"outputs": [
+			{
+				"name": "",
 				"type": "string"
 			}
 		],
-		"name": "addMother",
-		"outputs": [],
 		"payable": false,
-		"stateMutability": "nonpayable",
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "publicKey",
+				"type": "string"
+			}
+		],
+		"name": "getParentLength",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "numberOfFamilyMemmber",
+		"outputs": [
+			{
+				"name": "",
+				"type": "int256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -111,33 +328,11 @@ const abi=[
 		"constant": false,
 		"inputs": [
 			{
-				"name": "wife",
-				"type": "string"
-			},
-			{
-				"name": "husband",
-				"type": "string"
+				"name": "_wallet",
+				"type": "address"
 			}
 		],
-		"name": "mairrage",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "deceased",
-				"type": "string"
-			},
-			{
-				"name": "deathCerti",
-				"type": "string"
-			}
-		],
-		"name": "onDeath",
+		"name": "setWallet",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -173,107 +368,6 @@ const abi=[
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "constructor"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "check",
-		"outputs": [
-			{
-				"name": "",
-				"type": "int256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "publicKey",
-				"type": "string"
-			}
-		],
-		"name": "get",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			},
-			{
-				"name": "",
-				"type": "string"
-			},
-			{
-				"name": "",
-				"type": "int8"
-			},
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "publicKey",
-				"type": "string"
-			},
-			{
-				"name": "i",
-				"type": "uint256"
-			}
-		],
-		"name": "getChild",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "publicKey",
-				"type": "string"
-			}
-		],
-		"name": "getChildrenLength",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "numberOfFamilyMemmber",
-		"outputs": [
-			{
-				"name": "",
-				"type": "int256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
 	}
 ];
 
