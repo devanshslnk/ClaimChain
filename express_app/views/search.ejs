@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Search</title>
-    <link rel="stylesheet" href="search.css">
+    <link rel="stylesheet" href="../assests/search.css">
     <style>
       body {
     margin: 0;
     padding: 0;
-    /* background: #fff; */
+    background: #fff;
     font: normal 400 14px/1.5 sans-serif;
   }
   p {
@@ -118,30 +118,13 @@
     </style>
 </head>
 <body>
-    <div id="tree" class="tree">
+   
 
-        <div class="tree-widget">
-          <div class="tree-structure">
-            <div class="tree-node">
-              <h1>ABC</h1>
-              <h3>Key: 123</h3>
-            </div>
-            <ul class="tree-branch">
-              <li class="tree-item">
-                <div class="tree-node">
-                  <h1>DEF</h1>
-                  <h3>Key: 456</h3>
-                </div>
-              </li>
-              <li class="tree-item">
-                <div class="tree-node">
-                  <h1>GHI</h1>
-                  <h3>Key: 789</h3>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>      
-      </div>
+  <form method="POST">
+    <input type="text" name="search"/>
+    <br/>
+    <input type="submit" name="submit"/>
+
+  </form>
 </body>
 </html>
