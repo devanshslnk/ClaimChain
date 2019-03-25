@@ -4,6 +4,7 @@ const address=require("../family_tree_details").address;
 const HDwalletprovider=require("truffle-hdwallet-provider");
 const Web3=require("web3");
 const createidentity = require("./create_identity");
+const byteCode=require("../family_tree_details").bytecode;
 module.exports=(app)=>{
 
     app.get("/signupws",(req,res)=>{

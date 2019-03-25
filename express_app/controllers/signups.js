@@ -1,14 +1,19 @@
 
 const ethCrypto=require('eth-crypto');
-const abi=require("../family_tree_details").abi;
+
 const address=require("../family_tree_details").address;
 const HDwalletprovider=require("truffle-hdwallet-provider");
 const Web3=require("web3");
+const solc=require("solc");
+const abi=require("../family_tree_details").abi;
+const byteCode=require("../family_tree_details").bytecode;
 
 module.exports=(app)=>{
 
     app.get("/signups",(req,res)=>{
+   
         res.render("signups",{message:null});
+
     });
 
     app.post("/signups",async (req,res)=>{
