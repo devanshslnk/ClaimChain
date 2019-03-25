@@ -6,6 +6,7 @@ const bparser=require("body-parser");
 const registeration=require("./controllers/registeration");
 const contract_test=require("./controllers/contract_testing");
 const birth=require("./controllers/birth");
+const search=require("./controllers/search");
 
 const app=express();
 app.set('view engine','ejs');
@@ -27,6 +28,7 @@ app.listen(3000,()=>{
 registeration(app);
 contract_test(app);
 birth(app);
+search(app);
 
 
 
