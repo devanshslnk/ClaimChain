@@ -55,6 +55,7 @@ module.exports=(app)=>{
             var childAdress=ethCrypto.publicKey.toAddress(
                 childPublicKey
             );
+            
             var childCompressed=ethCrypto.publicKey.compress(childPublicKey);
             
 

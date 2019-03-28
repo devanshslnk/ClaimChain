@@ -22,7 +22,7 @@ module.exports=async (app)=>{
         const accounts=await web3.eth.getAccounts();
         console.log(accounts[0]);
         const contract=new  web3.eth.Contract(abi,address);
-        // var member=await contract.methods.get('020a2e2b6145747022cf4d43c58572fb88c886352446ffd5ef1118577dc3797f8c').call();
+        var member=await contract.methods.get('020a2e2b6145747022cf4d43c58572fb88c886352446ffd5ef1118577dc3797f8c').call();
 
         var lengthOfChildren=await contract.methods.getChildrenLength('020a2e2b6145747022cf4d43c58572fb88c886352446ffd5ef1118577dc3797f8c').call();
         var child=await contract.methods.getChild('020a2e2b6145747022cf4d43c58572fb88c886352446ffd5ef1118577dc3797f8c',0).call();
