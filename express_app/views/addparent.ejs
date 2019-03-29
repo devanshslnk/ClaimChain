@@ -88,30 +88,19 @@
     <div id="content-wrapper">
 
       <div class="container-fluid">
-
+        <h2>Register Parent</h2>
         <p><%= message %></p>
         <form method="POST">
             
-            <input name="first_name" type="text" placeholder="first name"/>
-            <br/>
-            <input name="last_name" placeholder="last name" type="text"/>
-            <br/>
-            <input name="dob" placeholder="date  of birth" type="text"/>
-    
-            <br/>
-            <select name="gender">
-                <option>
-                    male
-                </option>
-                <option>female</option>
-            </select>
-    
-            <input name="cipher_text"  placeholder="cipher text" type="text">
+            <input name="contractaddr"  placeholder="Family address" type="text">
             </br>
-            <input name="privateKey" placeholder='privateKey' type="password">
+            <input name="mypubkey"  placeholder="my public key" type="text">
+            </br>
+            <input name="fatherpubkey" placeholder='father public key' type="text">
+            <br>
+            <input name="motherpubkey" placeholder='mother public key' type="text">
             </br>
             <button name="submit" type="submit">Submit</button>
-    
     
         </form>
       <!-- /.container-fluid -->
