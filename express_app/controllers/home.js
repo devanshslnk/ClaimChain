@@ -8,6 +8,7 @@ const session=require("express-session");
 module.exports=(app)=>{
     app.get("/home",(req,res)=>{
         console.log(req.session.identity);
-        res.send("working");
+        res.render("home");
     }); 
+    
 }
