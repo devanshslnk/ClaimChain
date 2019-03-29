@@ -9,6 +9,7 @@ const signupws=require("./controllers/signupws");
 const signups=require("./controllers/signups");
 const birth=require("./controllers/birth");
 const search=require("./controllers/search");
+const home=require("./controllers/home");
 
 const app=express();
 app.set('view engine','ejs');
@@ -28,13 +29,10 @@ app.listen(3000,()=>{
 
 
 registeration(app);
-// contract_test(app);
 birth(app);
 search(app);
-
-
 login(app);
 signupws(app);
 signups(app);
-
+home(app);
 

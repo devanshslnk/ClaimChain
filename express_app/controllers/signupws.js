@@ -7,7 +7,6 @@ const session=require("express-session");
 
 const abi=require("../family_tree_details").abi;
 const address=require("../family_tree_details").address;
-const createidentity = require("./create_identity");
 const byteCode=require("../family_tree_details").bytecode;
 const createIdentity=require("./create_identity");
 
@@ -73,8 +72,8 @@ module.exports=(app)=>{
         req.session.address=contractAddress;
         console.log(req.session.identity);
 
-        res.render("home",{});
-
+        // res.render("home",{});
+        res.redirect("/home");
         
         // fs.writeFileSync(path,JSON.stringify(data),'utf8',(err)=>{
         //     console.log(err);
@@ -98,5 +97,6 @@ module.exports=(app)=>{
                 console.log(err);
             }        
         });
+        res.redirect("/");
     });
 }
