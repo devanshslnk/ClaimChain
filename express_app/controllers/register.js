@@ -6,11 +6,12 @@ const Web3=require("web3");
 
 module.exports=(app)=>{
 
-    app.get("/registeration",(req,res)=>{
+    app.get("/register",(req,res)=>{
         res.render("register",{message:null});
     });
 
-    app.post("/registeration",async (req,res)=>{
+    app.post("/register",async (req,res)=>{
+        console.log("posted");
         var first_name=req.body.first_name;
         var last_name=req.body.last_name;
         var dob=req.body.dob;
@@ -55,6 +56,7 @@ module.exports=(app)=>{
             var childAdress=ethCrypto.publicKey.toAddress(
                 childPublicKey
             );
+            
             var childCompressed=ethCrypto.publicKey.compress(childPublicKey);
             
 

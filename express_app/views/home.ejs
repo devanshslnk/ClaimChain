@@ -46,7 +46,7 @@
 
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
-      <li class="nav-item ">
+      <li class="nav-item active">
         <a class="nav-link" href="/home">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span>
@@ -60,7 +60,7 @@
           <span>View Family</span></a>
       </li>
 
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="/register">
           <i class="fas fa-fw fa-user-plus"></i>
           <span>Register Child</span></a>
@@ -89,31 +89,12 @@
 
       <div class="container-fluid">
 
-        <p><%= message %></p>
-        <form method="POST">
-            
-            <input name="first_name" type="text" placeholder="first name"/>
-            <br/>
-            <input name="last_name" placeholder="last name" type="text"/>
-            <br/>
-            <input name="dob" placeholder="date  of birth" type="text"/>
-    
-            <br/>
-            <select name="gender">
-                <option>
-                    male
-                </option>
-                <option>female</option>
-            </select>
-    
-            <input name="cipher_text"  placeholder="cipher text" type="text">
-            </br>
-            <input name="privateKey" placeholder='privateKey' type="password">
-            </br>
-            <button name="submit" type="submit">Submit</button>
-    
-    
-        </form>
+      <h2>Welcome To ClaimChain! </h2>
+      <h3>Priyam Shah</h3>
+      <hr>
+      <button class="btn btn-success"><a  href="/register">Register Child</a></button>
+      <br><br><br>
+      <button class="btn btn-success" ><a href="/addparent">Register Parent</a></button>
       <!-- /.container-fluid -->
 
       <!-- Sticky Footer -->
