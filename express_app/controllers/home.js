@@ -10,5 +10,23 @@ module.exports=(app)=>{
         console.log(req.session.identity);
         res.render("home");
     }); 
-    
+
+    app.get("/register",(req,res)=>{
+        console.log(req.session.identity);
+        res.render("register",{message:null});
+    }); 
+ 
+    app.get("/addparent",(req,res)=>{
+        console.log(req.session.identity);
+        res.render("addparent",{message:null});
+    }); 
+
+    app.get("/logout",(req,res)=>{
+        req.session.destroy((err)=>{
+            if(err){
+                console.log(err);
+            }        
+        });
+        res.redirect("/");
+    });
 }

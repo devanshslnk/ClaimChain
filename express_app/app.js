@@ -3,7 +3,7 @@ const Web3=require("web3");
 const HDwalletprovider=require("truffle-hdwallet-provider");
 const bparser=require("body-parser");
 
-const registeration=require("./controllers/registeration");
+const register=require("./controllers/registeration");
 const login=require("./controllers/login");
 const signupws=require("./controllers/signupws");
 const signups=require("./controllers/signups");
@@ -28,7 +28,7 @@ app.listen(3000,()=>{
 });
 
 
-registeration(app);
+register(app);
 birth(app);
 search(app);
 login(app);
