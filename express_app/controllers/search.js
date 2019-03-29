@@ -28,6 +28,21 @@ module.exports=(app)=>{
         }
         
         console.log(children);
+        
+        //Parent Search
+
+        var numberOfParent=await contract.methods.getParentLength(publicKey).call();
+        var parents=[];
+        console.log(numberOfParent);
+        for(var i=0;i<numberOfParent;i++){
+            var parent=await contract.methods.getParent(publicKey,i).call();
+            console.log(parent);
+            parents.push(parent);
+
+        }
+        
+        console.log(parents);
+
         res.render("search",{message:null});
     });
 }
