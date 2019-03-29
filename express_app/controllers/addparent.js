@@ -17,7 +17,7 @@ module.exports=(app)=>{
         var fatherpubkey=req.body.fatherpubkey;
         var motherpubkey=req.body.motherpubkey;
         console.log(contractaddr,mypubkey,fatherpubkey,motherpubkey);
-        try
+        try 
         {   
             var provider=new HDwalletprovider(
                 mypubkey,
