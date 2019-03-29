@@ -4,8 +4,9 @@ const ethCrypto=require('eth-crypto');
 const address=require("../family_tree_details").address;
 const HDwalletprovider=require("truffle-hdwallet-provider");
 const Web3=require("web3");
+// const solc=require("solc");
 const abi=require("../family_tree_details").abi;
-
+const byteCode=require("../family_tree_details").bytecode;
 
 module.exports=(app)=>{
 
