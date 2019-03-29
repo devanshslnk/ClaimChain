@@ -17,8 +17,8 @@ app.use(bparser.urlencoded({extended:false}));
 app.use(bparser.json());
 
 
-app.get("/",(req,res)=>{
-    res.send("working");
+app.get('/',function(request,response){
+    response.render('index.ejs')
 });
 
 
