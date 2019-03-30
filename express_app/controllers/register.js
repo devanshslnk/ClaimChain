@@ -3,7 +3,7 @@ const abi=require("../family_tree_details").abi;
 const address=require("../family_tree_details").address;
 const HDwalletprovider=require("truffle-hdwallet-provider");
 const Web3=require("web3");
-
+require("dotenv").config();
 module.exports=(app)=>{
 
     app.get("/register",(req,res)=>{

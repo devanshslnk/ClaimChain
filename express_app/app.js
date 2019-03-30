@@ -15,12 +15,12 @@ const home=require("./controllers/home");
 const app=express();
 app.set('view engine','ejs');
 app.use(express.static('./public'));
-app.use(bparser.urlencoded({extended:false}));
+app.use(bparser.urlencoded({extended:true}));
 app.use(bparser.json());
 
 
-app.get('/',function(request,response){
-    response.render('index.ejs')
+app.get('/',(req,res)=>{
+    res.render("index",{message:null});
 });
 
 

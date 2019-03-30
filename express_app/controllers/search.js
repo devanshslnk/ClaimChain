@@ -4,10 +4,10 @@ const HDwallterprovider=require("truffle-hdwallet-provider");
 const Web3=require("web3");
 
 module.exports=(app)=>{
-    app.get("/search",async (req,res)=>{
+    app.get("/viewfamily",async (req,res)=>{
         res.render("search",{message:null});
     });
-    app.post("/search",async (req,res)=>{
+    app.post("/viewfamily",async (req,res)=>{
         var publicKey=req.body.search;    
         var provider=new HDwallterprovider(
             '0xe87d48e461fc33004613d990b6009662afcf7b12321d479d3ad2e53933309a51',

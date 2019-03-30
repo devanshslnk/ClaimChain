@@ -114,36 +114,33 @@ body {
                 <div>
                     <div class="form-group">
                         <label class="text-uppercase small">First Name</label>
-                        <input name="first_name" type="text" class="form-control" placeholder="First Name" required="true">
+                        <input name="first_name" type="text" class="first_name form-control" placeholder="First Name" required="true">
                     </div>
                     <div class="form-group">
                         <label class="text-uppercase small">Last Name</label>
-                        <input name="last_name" type="text" class="form-control" placeholder="Last Name" required="true">
+                        <input name="last_name" type="text" class="last_name form-control" placeholder="Last Name" required="true">
                     </div>
                     <div class="form-group">
                         <label class="text-uppercase small">Date</label>
-                        <input name="dob" type="date" class="form-control" required="true">
+                        <input name="dob" type="date" class="dob form-control" required="true">
                     </div>
                     <div class="form-group">
                         <label class="text-uppercase small">Gender</label>
                         <br/>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked>
+                            <input class="male form-check-input" type="radio" name="gender" id="male" value="male" checked>
                             <label class="form-check-label" for="male">
                                 Male
                             </label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                            <input class="female form-check-input" type="radio" name="gender" id="female" value="female">
                             <label class="form-check-label" for="female">
                                 Female
                             </label>
                         </div>
                     </div>
-                    <div class="form-group">
-                      <label class="text-uppercase small">Public Key</label>
-                      <input name="pubkey" type="password" class="form-control" placeholder="Enter Your Public Key" required="true">
-                    </div>
+
                 </div>
                 </div>
                 <div class="auth__form_actions">
@@ -177,5 +174,7 @@ body {
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../assests/new.js"></script>
 </body>
 </html>

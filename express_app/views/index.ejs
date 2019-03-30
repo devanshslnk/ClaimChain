@@ -120,20 +120,24 @@ body {
 
 
 <div class="auth">
-    
+    <%= message %>
     <div class="auth__header">
       <div class="auth__logo row " style="margin-top: -50px" >
         <img height="90"  src="https://d2eip9sf3oo6c2.cloudfront.net/series/square_covers/000/000/083/full/EGH_VueJS_Final.png" alt="">
       </div>
     </div>
     <div class="auth__body">
-      <form class="auth__form" autocomplete="off">
+      <form class="auth__form" autocomplete="off" method="POST">
         <div class="auth__form_body">
           <h3 class="auth__form_title">Sign in</h3>
           <div>
             <div class="form-group">
               <label class="text-uppercase small">Private Key</label>
-              <input type="password" class="form-control" placeholder="Enter Your Private Key">
+              <input type="password" name="private_key" class="form-control" placeholder="Enter Your Private Key">
+            </div>
+            <div class="form-group">
+              <label class="text-uppercase small">Address Of Family</label>
+              <input type="password" name="contract_address" class="form-control" placeholder="Enter Your Fmaily Address">
             </div>
           </div>
         </div>

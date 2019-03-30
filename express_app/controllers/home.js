@@ -7,26 +7,13 @@ const session=require("express-session");
 
 module.exports=(app)=>{
     app.get("/home",(req,res)=>{
-        console.log(req.session.identity);
-        res.render("home");
+        if(req.session.identity!==undefined){
+            res.render("home");
+        }else{
+            res.redirect("/");
+        }
+        
     }); 
 
-    app.get("/register",(req,res)=>{
-        console.log(req.session.identity);
-        res.render("register",{message:null});
-    }); 
  
-    app.get("/addparent",(req,res)=>{
-        console.log(req.session.identity);
-        res.render("addparent",{message:null});
-    }); 
-
-    app.get("/logout",(req,res)=>{
-        req.session.destroy((err)=>{
-            if(err){
-                console.log(err);
-            }        
-        });
-        res.redirect("/");
-    });
 }
