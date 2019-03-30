@@ -10477,6 +10477,7 @@
     width: 90px !important;
     background-color: #212529;
     min-height: calc(100vh - 56px);
+    transition-duration: 1s;
   }
   
   .sidebar .nav-item:last-child {
@@ -10492,6 +10493,7 @@
   .sidebar .nav-item .nav-link span {
     font-size: 0.65rem;
     display: block;
+    transition-duration: 1s;
   }
   
   .sidebar .nav-item .dropdown-menu {
@@ -10505,6 +10507,7 @@
   .sidebar .nav-item .dropdown-menu.dropup {
     bottom: 0;
     top: auto !important;
+    transition-duration: 2s;
   }
   
   .sidebar .nav-item.dropdown .dropdown-toggle::after {
@@ -10522,6 +10525,7 @@
   .sidebar.toggled {
     width: 0 !important;
     overflow: hidden;
+    transition-duration: 1s;
   }
   
   @media (min-width: 768px) {
@@ -10688,26 +10692,31 @@
     width: calc(100% - 90px);
     height: 80px;
     background-color: #e9ecef;
+    transition-duration: 1s;
   }
   
   footer.sticky-footer .copyright {
     line-height: 1;
     font-size: 0.8rem;
+    transition-duration: 1s;
   }
   
   @media (min-width: 768px) {
     footer.sticky-footer {
       width: calc(100% - 225px);
+      transition-duration: 1s;
     }
   }
   
   body.sidebar-toggled footer.sticky-footer {
     width: 100%;
+    transition-duration: 1s;
   }
   
   @media (min-width: 768px) {
     body.sidebar-toggled footer.sticky-footer {
       width: calc(100% - 90px);
+      transition-duration: 1s;
     }
   }
   
