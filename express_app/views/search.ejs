@@ -118,13 +118,17 @@
     </style>
 </head>
 <body>
-   
-
-  <form method="POST">
-    <input type="text" name="search"/>
-    <br/>
-    <input type="submit" name="submit"/>
-
-  </form>
+  <h1>Children</h1>
+  <%for(var child=0;child<children.length;child++){%>
+  
+    <p>Name:<%=children[child]["0"]%>&nbsp;<%=children[child]['1']%></p>
+    <p>Key:<%=children[child]["3"]%>
+  <%}%>
+  <h1>Parent</h1>
+  <%for(var parent=0;parent<parents.length;parent++){%>
+  
+      <p>Name:<%=parents[parent]["0"]%>&nbsp;<%=parents[parent]['1']%></p>
+      <p>Key:<%=parents[parent]["3"]%></p>
+    <%}%>
 </body>
 </html>

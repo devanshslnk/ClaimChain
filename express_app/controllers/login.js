@@ -1,18 +1,12 @@
 const ethCrypto=require('eth-crypto');
 const abi=require("../family_tree_details").abi;
-const address=require("../family_tree_details").address;
+// const address=require("../family_tree_details").address;
 const HDwalletprovider=require("truffle-hdwallet-provider");
 const Web3=require("web3");
 const session=require("express-session");
 require("dotenv").config();
 module.exports=(app)=>{
-    app.use(session({
-        key:"user_sid",
-        secret:"sometext",
-        resave:false,
-        saveUninitialized: false,
     
-    }));    
     app.get("/login",(req,res)=>{
         res.render("index",{message:null});
     });
@@ -50,11 +44,12 @@ module.exports=(app)=>{
             var identity={
                 address:address,
                 privateKey:privateKey,
-                publicKey:publicKey
+                publicKey:publicKey,
+                compressed:compressed
             };
             req.session.identity=identity;
             req.session.contractAddress=contractAddress;
-            
+            console.log(req.session.contractAddress);
             console.log("successful");
             res.redirect("/home");
         }

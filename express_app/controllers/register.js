@@ -1,22 +1,32 @@
 const ethCrypto=require('eth-crypto');
 const abi=require("../family_tree_details").abi;
-const address=require("../family_tree_details").address;
+// const address=require("../family_tree_details").address;
 const HDwalletprovider=require("truffle-hdwallet-provider");
 const Web3=require("web3");
+const fs=require("fs");
+const session=require("express-session");
+
 require("dotenv").config();
 module.exports=(app)=>{
 
     app.get("/register",(req,res)=>{
-        res.render("register",{message:null});
+        console.log(req.session.identity);
+        if(req.session.identity!==undefined){
+        res.render("register",{message:null});}
+        else{
+            res.redirect("/");
+        }
     });
 
     app.post("/register",async (req,res)=>{
-        console.log("posted");
+     
+        
         var first_name=req.body.first_name;
         var last_name=req.body.last_name;
         var dob=req.body.dob;
         var cipher_text=JSON.parse(req.body.cipher_text);
-        var parentPrivateKey=req.body.privateKey;
+        var parentPrivateKey=req.session.identity.privateKey;
+
         var gender=req.body.gender;
         if(gender==="male"){
             gender=0
@@ -31,21 +41,23 @@ module.exports=(app)=>{
                 cipher_text
             );
 
-            
+            console.log(decrypted);
             var provider=new HDwalletprovider(
-                parentPrivateKey,
-                'https://ropsten.infura.io/v3/da4d3f3021fd4ada9c1e70a4b607e74f'
+                process.env.PRIVATE_KEY,
+                process.env.ROPSTEN_INFURA
             );
+
+            // console.log(req.session);
+            var address=req.session.contractAddress;
             const web3=new Web3(provider);
-            const accounts=await web3.eth.getAccounts();
+            
             const contract=new web3.eth.Contract(abi,address);
             
             // Parent
-            var parentPublicKey=ethCrypto.publicKeyByPrivateKey(parentPrivateKey);
-            var parentCompressed=ethCrypto.publicKey.compress(parentPublicKey);
-            var parentAddress=ethCrypto.publicKey.toAddress(
-                parentPublicKey
-            );
+            var parentPublicKey=req.session.identity.publicKey;
+            var parentCompressed=req.session.identity.compressed;
+            var parentAddress=req.session.identity.address;
+            console.log(parentAddress);
             
             
             // Child
@@ -53,25 +65,41 @@ module.exports=(app)=>{
             var childPublicKey=ethCrypto.publicKeyByPrivateKey(
                 childPrivateKey
             );
-            var childAdress=ethCrypto.publicKey.toAddress(
+            var childAddress=ethCrypto.publicKey.toAddress(
                 childPublicKey
             );
             
             var childCompressed=ethCrypto.publicKey.compress(childPublicKey);
             
 
-            var contractReceiptMember=await contract.methods.addFamilyMember(childCompressed,first_name,last_name,1,gender,0).send({
-                "from":parentAddress
+            var contractReceiptMember=await contract.methods.addFamilyMember(childCompressed,first_name,last_name,dob,gender,0).send({
+                from:"0x2248d96D13198CC52274f30F029C241c87b5a23c"
             });
             console.log(contractReceiptMember);
             var contractReceiptChild=await contract.methods.addChild(childCompressed,parentCompressed).send({
-                "from":parentAddress
+                from:"0x2248d96D13198CC52274f30F029C241c87b5a23c"
             });
             console.log(contractReceiptChild);
 
-            
-
-            res.render("register",{message:"success"});
+            data={
+                identity:{
+                    address:childAddress,
+                    privateKey:childPrivateKey,
+                    publicKey:childPublicKey,
+                    compressed:childCompressed
+                },
+                familyAddress:req.session.contratAddress
+            }
+            var path=__dirname+"/"+childCompressed+".txt";
+            fs.writeFileSync(path,JSON.stringify(data),'utf8',(err)=>{
+                if(err){
+                    console.log(err)
+                }
+            });
+            res.download(path,childCompressed+".txt",(err)=>{
+                
+            });
+            // res.render("register",{message:"success"});
         }
         catch(err){
             console.log(err)

@@ -1,48 +1,59 @@
 const abi=require("../family_tree_details").abi;
-const address=require("../family_tree_details").address;
+// const address=require("../family_tree_details").address;
 const HDwallterprovider=require("truffle-hdwallet-provider");
 const Web3=require("web3");
 
+require("dotenv").config();
+
 module.exports=(app)=>{
     app.get("/viewfamily",async (req,res)=>{
-        res.render("search",{message:null});
-    });
-    app.post("/viewfamily",async (req,res)=>{
-        var publicKey=req.body.search;    
+        var compressed=req.session.identity.compressed;
         var provider=new HDwallterprovider(
-            '0xe87d48e461fc33004613d990b6009662afcf7b12321d479d3ad2e53933309a51',
-            'https://ropsten.infura.io/v3/da4d3f3021fd4ada9c1e70a4b607e74f'
+            process.env.PRIVATE_KEY,
+            process.env.ROPSTEN_INFURA    
         );      
         var web3=new Web3(provider);
+        var address=req.session.contractAddress;
         var contract=new web3.eth.Contract(abi,address);
-        var numberOfChildren=await contract.methods.getChildrenLength(publicKey).call();
+        var numberOfChildren=await contract.methods.getChildrenLength(compressed).call();
         var children=[];
-        // var child=await contract.methods.getChild(publicKey,0).call();
+        var childrenDetail=[];
         console.log(numberOfChildren);
-        // console.log(child);
+        
         for(var i=0;i<numberOfChildren;i++){
-            var child=await contract.methods.getChild(publicKey,i).call();
-            console.log(child);
+            var child=await contract.methods.getChild(compressed,i).call();
             children.push(child);
 
         }
-        
-        console.log(children);
-        
+
+        for(var child in children){
+            
+            var detail=await contract.methods.get(children[child]).call();
+          
+            childrenDetail.push(detail);
+        }
         //Parent Search
 
-        var numberOfParent=await contract.methods.getParentLength(publicKey).call();
+        var numberOfParent=await contract.methods.getParentLength(compressed).call();
         var parents=[];
+        var parentDetail=[]
         console.log(numberOfParent);
         for(var i=0;i<numberOfParent;i++){
-            var parent=await contract.methods.getParent(publicKey,i).call();
-            console.log(parent);
+
+            var parent=await contract.methods.getParent(compressed,i).call();
+        
             parents.push(parent);
 
         }
-        
-        console.log(parents);
+        for(var parent in parents){
+            var detail=await contract.methods.get(parents[parent]).call();
+            parentDetail.push(detail);
+        }
+    
 
-        res.render("search",{message:null});
+    
+        res.render("search",{parents:parentDetail,children:childrenDetail,message:"done"});
+
     });
+  
 }

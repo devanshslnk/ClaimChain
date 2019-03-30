@@ -47,12 +47,13 @@ module.exports=(app)=>{
 
         // Creating identity
         var identity=createIdentity();
+
         console.log(identity);
         var newPublicKey=identity.publicKey;
         var newCompressed=ethCrypto.publicKey.compress(
             newPublicKey
         );
-        
+        identity.compressed=newCompressed;
         // Setting provider and web3
         const provider=new HDwalletprovider(
             process.env.PRIVATE_KEY,
@@ -66,33 +67,37 @@ module.exports=(app)=>{
             gas:'4700000'
         });
         
-        // // getting address of deployed smart contracts
+        //getting address of deployed smart contracts
         var contractAddress=contract.options.address;
-        var data={
-            identity:identity,
-            familyAddress:contractAddress
-        };
+        
 
         // Setting up sessions
-     
         req.session.identity=identity;
         req.session.contractAddress=contractAddress;
         
         console.log(req.session);
         
+
+        //writing to a file
+        var path=__dirname+"/"+identity.compressed+".txt";
+     
+        var data={
+            identity:identity,
+            familyAddress:contractAddress
+        };
+ 
         fs.writeFileSync(path,JSON.stringify(data),'utf8',(err)=>{
             console.log(err);
         });
 
 
-        
+        // download file
         // res.setHeader('Content-disposition', 'attachment; filename=' + identity.address+".txt");
-        // res.setHeader("Location","/home");s
-        res.download(path,identity.address+'.txt',(err)=>{
+        res.download(path,identity.compressed+'.txt',(err)=>{
             if(err){
                 console.log(err);
             }else{
-                        
+                
             }
         });
         
