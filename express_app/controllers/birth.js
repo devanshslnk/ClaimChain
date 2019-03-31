@@ -16,14 +16,7 @@ module.exports=(app)=>{
     
     app.get("/birth",async (req,res)=>{
         
-        // const provider=
-
-  
-        // console.log(compressed);
-        // var decompressed=ethCryto.publicKey.decompress(
-        //     compressed
-        // );
-        // // console.log(decompressed);
+    
         res.render('birth_form',{});
 
 
