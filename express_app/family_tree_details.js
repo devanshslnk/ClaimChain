@@ -1,7 +1,5 @@
 
-
-const abi=[
-	{
+const abi=[{
 		"constant": false,
 		"inputs": [
 			{
