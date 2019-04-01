@@ -1,11 +1,6 @@
 pragma solidity ^0.4.0;
-import "./Seriality.sol";
- 
-import "./BytesToTypes.sol";
-import "./TypesToBytes.sol";
-import "./SizeOf.sol";
 
-contract FamilyTree is TypesToBytes,SizeOf{
+contract FamilyTree {
         
         int256 public numberOfFamilyMemmber;
         
@@ -220,6 +215,14 @@ contract FamilyTree is TypesToBytes,SizeOf{
             return (familyTree[publicKey].children[i]);    
        }
        
+         function getParentLength(string publicKey) public view returns(uint256){
+
+            return familyTree[publicKey].parents.length;
+               
+       }
+        function getParent(string publicKey,uint256 i)public constant  returns(string){
+            return (familyTree[publicKey].parents[i]);    
+       }
         
         
  
