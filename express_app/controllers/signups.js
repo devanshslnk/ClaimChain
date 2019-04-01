@@ -1,19 +1,26 @@
-
 const ethCrypto=require('eth-crypto');
-
-const address=require("../family_tree_details").address;
+const fs=require("fs");
 const HDwalletprovider=require("truffle-hdwallet-provider");
 const Web3=require("web3");
-// const solc=require("solc");
+const session=require("express-session");
+// const cookie=require("cookie-parser");
+
 const abi=require("../family_tree_details").abi;
+const address=require("../family_tree_details").address;
 const byteCode=require("../family_tree_details").bytecode;
+const createIdentity=require("./create_identity");
+
+require("dotenv").config();
 
 module.exports=(app)=>{
 
     app.get("/signups",(req,res)=>{
-   
+        if(req.session.identity!== undefined){
+            res.redirect("/home");
+        }
+        else{
         res.render("signups",{message:null});
-
+        }
     });
 
     app.post("/signups",async (req,res)=>{
@@ -41,57 +48,90 @@ module.exports=(app)=>{
             gender1=1
         }
         console.log(first_name1,last_name1,dob1,cipher_text1,parentPrivateKey1,gender1);
-        // try
-        // {   
-        //     var decrypted=await ethCrypto.decryptWithPrivateKey(
-        //         parentPrivateKey,
-        //         cipher_text
-        //     );
 
-            
-        //     var provider=new HDwalletprovider(
-        //         parentPrivateKey,
-        //         'https://ropsten.infura.io/v3/da4d3f3021fd4ada9c1e70a4b607e74f'
-        //     );
-        //     const web3=new Web3(provider);
-        //     const accounts=await web3.eth.getAccounts();
-        //     const contract=new web3.eth.Contract(abi,address);
-            
-        //     // Parent
-        //     var parentPublicKey=ethCrypto.publicKeyByPrivateKey(parentPrivateKey);
-        //     var parentCompressed=ethCrypto.publicKey.compress(parentPublicKey);
-        //     var parentAddress=ethCrypto.publicKey.toAddress(
-        //         parentPublicKey
-        //     );
-            
-            
-        //     // Child
-        //     var childPrivateKey=decrypted.slice(0,66);
-        //     var childPublicKey=ethCrypto.publicKeyByPrivateKey(
-        //         childPrivateKey
-        //     );
-        //     var childAdress=ethCrypto.publicKey.toAddress(
-        //         childPublicKey
-        //     );
-        //     var childCompressed=ethCrypto.publicKey.compress(childPublicKey);
-            
+        var marraigeStatus=1;
 
-        //     var contractReceiptMember=await contract.methods.addFamilyMember(childCompressed,first_name,last_name,1,gender,0).send({
-        //         "from":parentAddress
-        //     });
-        //     console.log(contractReceiptMember);
-        //     var contractReceiptChild=await contract.methods.addChild(childCompressed,parentCompressed).send({
-        //         "from":parentAddress
-        //     });
-        //     console.log(contractReceiptChild);
+        // Creating identity
+        var identity=createIdentity();
 
-            
+        console.log(identity);
+        var newPublicKey=identity.publicKey;
+        var newCompressed=ethCrypto.publicKey.compress(
+            newPublicKey
+        );
+        identity.compressed=newCompressed;
+        // Setting provider and web3
+        const provider=new HDwalletprovider(
+            process.env.PRIVATE_KEY,
+            process.env.ROPSTEN_INFURA
+        );
+        const web3=new Web3(provider);
 
-        //     res.render("login",{message:"success"});
-        // }
-        // catch(err){
-        //     console.log(err)
-        //     res.render("login",{message:"Login Failed"});
-        // }
+        // Deploying smart contract
+        var contract=await new web3.eth.Contract(abi).deploy({data:byteCode,arguments:[newCompressed,first_name,last_name,dob,gender,marraigeStatus]}).send({
+            from:"0x2248d96D13198CC52274f30F029C241c87b5a23c",
+            gas:'4700000'
+        });
+        
+        //getting address of deployed smart contracts
+        var contractAddress=contract.options.address;
+        
+        //Adding wife
+        var identity1 = createIdentity();
+        var newPublicKey1=identity1.publicKey;
+        var newCompressed1=ethCrypto.publicKey.compress(
+            newPublicKey1
+        );
+        identity1.compressed=newCompressed1;
+        
+        const contract1=new  web3.eth.Contract(abi,contractAddress);
+
+        var contractWife = await contract1.methods.mairrage(newCompressed1,newCompressed).send({
+            from:"0x2248d96D13198CC52274f30F029C241c87b5a23c",
+            gas:'4700000'
+        });
+
+        console.log(contractWife);
+        // Setting up sessions
+        req.session.identity=identity;
+        req.session.contractAddress=contractAddress;
+        
+        console.log(req.session);
+        
+
+
+        //writing to a file
+        var path=__dirname+"/"+identity.compressed+".txt";
+        
+        var data={
+            identity:identity,
+            familyAddress:contractAddress,
+            identity1:identity1
+        };
+    
+        fs.writeFileSync(path,JSON.stringify(data),'utf8',(err)=>{
+            console.log(err);
+        });
+
+
+        // download file
+        // res.setHeader('Content-disposition', 'attachment; filename=' + identity.address+".txt");
+        res.download(path,identity.compressed+'.txt',(err)=>{
+            if(err){
+                console.log(err);
+            }else{
+                
+            }
+        });
+
+});
+
+    app.get("/logout",(req,res)=>{
+        req.session.destroy((err)=>{
+            if(err){
+                console.log(err);
+            }        
+        });
+        res.redirect("/");
     });
 }
