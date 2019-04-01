@@ -45,6 +45,8 @@ module.exports=(app)=>{
             parents.push(parent);
 
         }
+        var spouse=await contract.methods.get('02a72e8ed114151a2aecc21166676b187c13c76051c2d5fec81f0974f952b39700').call();
+        console.log(spouse);
         for(var parent in parents){
             var detail=await contract.methods.get(parents[parent]).call();
             parentDetail.push(detail);

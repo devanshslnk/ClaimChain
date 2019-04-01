@@ -80,7 +80,7 @@ module.exports=(app)=>{
                 from:"0x2248d96D13198CC52274f30F029C241c87b5a23c"
             });
             console.log(contractReceiptChild);
-
+        
             data={
                 identity:{
                     address:childAddress,
@@ -88,7 +88,7 @@ module.exports=(app)=>{
                     publicKey:childPublicKey,
                     compressed:childCompressed
                 },
-                familyAddress:req.session.contratAddress
+                familyAddress:req.session.contractAddress
             }
             var path=__dirname+"/"+childCompressed+".txt";
             fs.writeFileSync(path,JSON.stringify(data),'utf8',(err)=>{
@@ -97,9 +97,11 @@ module.exports=(app)=>{
                 }
             });
             res.download(path,childCompressed+".txt",(err)=>{
-                
+                if(err){
+                    console.log(err);
+                }     
             });
-            // res.render("register",{message:"success"});
+           
         }
         catch(err){
             console.log(err)

@@ -2,7 +2,7 @@ const Web3=require('web3');
 const ethCryto=require('eth-crypto');
 const HDwalletprovider=require("truffle-hdwallet-provider");
 const createIdentity=require("./create_identity");
-
+const session=require("express-session");
     // { address: '0x7e258B72aBB2cad96137f43ae11Fcb32601AffDe',
     // compressed:020a2e2b6145747022cf4d43c58572fb88c886352446ffd5ef1118577dc3797f8c
 //   privateKey:
@@ -15,14 +15,9 @@ const createIdentity=require("./create_identity");
 module.exports=(app)=>{
     
     app.get("/birth",async (req,res)=>{
-        
-    
-        res.render('birth_form',{});
-
-
-    });
-    app.post("/birth",async (req,res)=>{
-        var fatherKey=req.body.father_public_key;
+        console.log(req.session);
+        var fatherKey=req.session.identity.compressed;
+        console.log(fatherKey);
         var timestamp=Date.now();
         var identity=createIdentity();
         var decompressed=ethCryto.publicKey.decompress(

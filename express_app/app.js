@@ -35,7 +35,11 @@ app.use(bparser.json());
 
 
 app.get('/',(req,res)=>{
+    if(req.session.identity===undefined){
     res.render("index",{message:null});
+    }else{
+        res.redirect("/home");
+    }
 });
 
 
