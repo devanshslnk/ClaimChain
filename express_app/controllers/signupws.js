@@ -13,13 +13,7 @@ const createIdentity=require("./create_identity");
 require("dotenv").config();
 
 module.exports=(app)=>{
-    app.use(session({
-        key:"user_sid",
-        secret:"sometext",
-        resave:false,
-        saveUninitialized: false,
-
-    }));
+    
     app.get("/signupws",(req,res)=>{
         if(req.session.identity!== undefined){
             res.redirect("/home");
