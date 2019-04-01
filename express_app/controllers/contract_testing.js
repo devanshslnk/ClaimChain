@@ -3,16 +3,12 @@ const HDwalletprovider=require("truffle-hdwallet-provider");
 const abi=require("../family_tree_details").abi;
 const address=require("../family_tree_details").address;
 const ethCrypto=require("eth-crypto");
-<<<<<<< HEAD
 const driver=require("bigchaindb-driver");
 const createIdentity=require("./create_identity");
 
 require('dotenv').config();
 
 module.exports=async (app)=>{
-=======
-module.exports=(app)=>{
->>>>>>> 4b4a5b11bcb79adced79af66de198d28d0a460da
     app.get("/contract_test",async (req,res)=>{
 
         const provider=new HDwalletprovider(
@@ -27,7 +23,6 @@ module.exports=(app)=>{
         }
         
         
-<<<<<<< HEAD
         // const accounts=await web3.eth.getAccounts();
         // console.log(accounts[0]);
         // const contract=new  web3.eth.Contract(abi,address);
@@ -39,28 +34,12 @@ module.exports=(app)=>{
 
         // console.log(totalNumber);
         // console.log(lengthOfChildren)        
-=======
-        const accounts=await web3.eth.getAccounts();
-        console.log(accounts[0]);
-        const address="0xB133F21904bA764699C16f1819E074C8C45eeDF4";
-        const contract=new  web3.eth.Contract(abi,address);
-        var member=await contract.methods.get('02168db193027f4242ab80a220d9d948de9acc51e6ad4416bcd6c02c3fab83dd4d').call();
-
-        var lengthOfChildren=await contract.methods.getChildrenLength('0362d1d4cc38f5f2a5017e736a2d10cdf0214de9f216d17927b0c96e575182071d').call();
-        // var child=await contract.methods.getChild('020a2e2b6145747022cf4d43c58572fb88c886352446ffd5ef1118577dc3797f8c',0).call();
-        var totalNumber =await contract.methods.numberOfFamilyMemmber().call();
-
-        console.log(member['0']);
-        console.log(totalNumber);
-        console.log(lengthOfChildren)        
->>>>>>> 4b4a5b11bcb79adced79af66de198d28d0a460da
         // console.log(child);
         res.send("contract_test");
   
 
     });
 
-<<<<<<< HEAD
     app.get("/data",async (req,res)=>{
         const provider=new HDwalletprovider(
             process.env.PRIVATE_KEY,
@@ -101,6 +80,4 @@ module.exports=(app)=>{
     });
 
     
-=======
->>>>>>> 4b4a5b11bcb79adced79af66de198d28d0a460da
 }

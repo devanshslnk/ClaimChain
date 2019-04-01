@@ -11,10 +11,7 @@
   "dependencies": {
     "bigchaindb-driver": "^4.1.0",
     "body-parser": "^1.18.3",
-<<<<<<< HEAD
-=======
     "connect-mongo": "^2.0.3",
->>>>>>> 4b4a5b11bcb79adced79af66de198d28d0a460da
     "dotenv": "^7.0.0",
     "ejs": "^2.6.1",
     "eth-crypto": "^1.3.2",

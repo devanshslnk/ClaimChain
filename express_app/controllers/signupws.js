@@ -69,17 +69,9 @@ module.exports=(app)=>{
 
         // Setting up sessions
         req.session.identity=identity;
-<<<<<<< HEAD
-        req.session.address=contractAddress;
-        console.log(req.session.identity);
-
-        // res.render("home",{});
-        res.redirect("/home");
-=======
         req.session.contractAddress=contractAddress;
         
         console.log(req.session);
->>>>>>> 4b4a5b11bcb79adced79af66de198d28d0a460da
         
 
         //writing to a file

@@ -14,10 +14,7 @@ const birth=require("./controllers/birth");
 const search=require("./controllers/search");
 const home=require("./controllers/home");
 const contract_test=require("./controllers/contract_testing");
-<<<<<<< HEAD
-=======
 
->>>>>>> 4b4a5b11bcb79adced79af66de198d28d0a460da
 const app=express();
 
 app.set('view engine','ejs');
@@ -47,21 +44,12 @@ app.listen(3000,()=>{
 });
 
 
-<<<<<<< HEAD
-registeration(app);
-contract_test(app);
-=======
 register(app);
->>>>>>> 4b4a5b11bcb79adced79af66de198d28d0a460da
 birth(app);
 search(app);
 login(app);
 signupws(app);
 signups(app);
 home(app);
-<<<<<<< HEAD
-
-=======
 addparent(app);
 contract_test(app);
->>>>>>> 4b4a5b11bcb79adced79af66de198d28d0a460da
