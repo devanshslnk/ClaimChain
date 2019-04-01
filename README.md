@@ -39,7 +39,7 @@
 - git clone https://github.com/devanshslnk/ClaimChain.git
 ```
 ``` sh
-- cd ClaimChain
+- cd ClaimChain/express_app
 ```
 ``` sh
 - npm install
