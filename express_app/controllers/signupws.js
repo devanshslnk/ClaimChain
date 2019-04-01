@@ -3,13 +3,14 @@ const fs=require("fs");
 const HDwalletprovider=require("truffle-hdwallet-provider");
 const Web3=require("web3");
 const session=require("express-session");
+
 // const cookie=require("cookie-parser");
 
 const abi=require("../family_tree_details").abi;
 const address=require("../family_tree_details").address;
-const createidentity = require("./create_identity");
 const byteCode=require("../family_tree_details").bytecode;
 const createIdentity=require("./create_identity");
+require("dotenv").config();
 
 module.exports=(app)=>{
     app.use(session({
@@ -49,8 +50,8 @@ module.exports=(app)=>{
         
         // Setting provider and web3
         const provider=new HDwalletprovider(
-            "6971A7AEFA1B6643311ADD7214B58CAC41E257FB17F47CD4D5C529902FAD00A7",
-            'https://ropsten.infura.io/v3/da4d3f3021fd4ada9c1e70a4b607e74f'
+            process.env.PRIVATE_KEY,
+            process.env.ROPSTEN_INFURA
         );
         const web3=new Web3(provider);
 
@@ -73,8 +74,8 @@ module.exports=(app)=>{
         req.session.address=contractAddress;
         console.log(req.session.identity);
 
-        res.render("home",{});
-
+        // res.render("home",{});
+        res.redirect("/home");
         
         // fs.writeFileSync(path,JSON.stringify(data),'utf8',(err)=>{
         //     console.log(err);
@@ -98,5 +99,6 @@ module.exports=(app)=>{
                 console.log(err);
             }        
         });
+        res.redirect("/");
     });
 }
