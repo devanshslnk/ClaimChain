@@ -123,7 +123,7 @@ body {
     <%= message %>
     <div class="auth__header">
       <div class="auth__logo row " style="margin-top: -50px" >
-        <img height="90"  src="https://d2eip9sf3oo6c2.cloudfront.net/series/square_covers/000/000/083/full/EGH_VueJS_Final.png" alt="">
+        <img height="90"  src="./assests/logocc.png" alt="">
       </div>
     </div>
     <div class="auth__body">
@@ -147,16 +147,26 @@ body {
           </button>
         </div>
       </form>
-      <div class="container">
+      <div class="container-fluid">
       <hr/>
       <h3 class="mt-5" style="color:#584dc3;text-align:center;">Not Registered?</h3>
       <div class="row mt-3 justify-content-md-center justify-content-sm-center">
-        <div class="col-md-3 col-sm-12">
-            <a  class="btn btn-outline-primary mr-5" href="signups" style="color:primary">Signup with spouse</a>
-          </div>
-          <div class="col-md-3 col-sm-12">
-            <a  class="btn btn-outline-primary" href="signupws" style="color:primary">Signup without spouse</a>
-          </div>
+        <div class="col"></div>
+        <div class="col mt-4" >
+          <div class="auth__form_actions">
+            <a href="/signupws" class="btn btn-primary btn-lg btn-block" style="width:100%;">
+                Signup Without Spouse
+            </a>
+            </div>
+        </div>
+        <div class="col mt-4 ">
+          <div class="auth__form_actions">
+            <a href="/signups" class="btn btn-primary btn-lg btn-block" style="width:100%;">
+                Signup With Spouse
+            </a>
+            </div>
+        </div>
+        <div class="col"></div>
         </div>
       </div>
     </div>
