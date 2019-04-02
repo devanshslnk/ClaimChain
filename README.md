@@ -27,13 +27,13 @@
 <br>
 <h1>Signup</h1>
 <p align="center">
-<img src ="./assets/images/demo.gif" max-width = 600px>
+<img src ="./assets/images/demo1.gif" max-width = 600px>
 </p>
 
 <br>
 <h1>Login</h1>
 <p align="center">
-<img src ="./assets/images/demo1.gif" max-width = 600px>
+<img src ="./assets/images/demo.gif" max-width = 600px>
 </p>
 
 </div>
