@@ -68,8 +68,8 @@ see Project Report [here](https://github.com/devanshslnk/ClaimChain/blob/master/
 ------------------------------------------
 ### Contributors
 
-- [@devanshslnk](https://github.com/devanshslnk)
-- [@mihir-ms](https://github.com/mihir-ms)
+- [@devanshslnk](https://github.com/devanshslnk)(Also contributed through Devansh Solanki)
+- [@mihir-ms](https://github.com/mihir-ms)(Also contributed through Mihir Shah)
 - [@priyamshah112](https://github.com/priyamshah112)
 
 -------------------------------------------
