@@ -16,14 +16,31 @@
 
   <!-- Custom styles for this template-->
   <link rel="stylesheet" href="../assests/dashboard.css">
+<style>
 
+.auth__form_actions .btn {
+  border-radius: 30px;
+  width:20%;
+  background: #4d5bcc;
+  box-shadow: 0 2px 12px rgba(50, 128, 228, 0.1);
+    transition-duration: .5s;
+}
+
+.auth__form_actions .btn:hover{
+    background: white;
+    color:#584dc3;
+    transition-duration: .5s;
+    box-shadow: 0 2px 12px rgba(50, 128, 228, 0.5)
+}
+</style>
 </head>
 
 <body id="page-top">
 
-  <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+  <nav class="navbar navbar-expand static-top"  style="background-image: linear-gradient(to right,#584dc3, #3280e4); ">
+    <!-- border-bottom:1px solid floralwhite -->
 
-    <a class="navbar-brand mr-1" href="home">Claim Chain</a>
+    <a class="navbar-brand mr-1 text-white" href="home">Claim Chain</a>
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>
@@ -32,11 +49,11 @@
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">    
       <li class="nav-item dropdown no-arrow">
-        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user-circle fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-          <a class="dropdown-item" href="/logout" >Logout</a>
+          <a class="dropdown-item " href="/logout" >Logout</a>
       </li>
     </ul>
 
@@ -45,10 +62,10 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="sidebar navbar-nav">
+    <ul class="sidebar navbar-nav text-dark" style="background-image: linear-gradient(#3280e4, #584dc3); ">
       <li class="nav-item active">
         <a class="nav-link" href="/home">
-          <i class="fas fa-fw fa-tachometer-alt text-primary"></i>
+          <i class="fas fa-fw fa-tachometer-alt text-warning"></i>
           <span>Dashboard</span>
         </a>
       </li>
@@ -56,46 +73,44 @@
 
       <li class="nav-item">
         <a class="nav-link" href="/viewfamily">
-          <i class="fas fa-fw fa-user text-warning"></i>
+          <i class="fas fa-fw fa-user"></i>
           <span>View Family</span></a>
       </li>
       
 
       <li class="nav-item">
         <a class="nav-link" href="/addparent">
-          <i class="fas fa-fw fa-user-plus text-success"></i>
+          <i class="fas fa-fw fa-user-plus"></i>
           <span>Register Parent</span></a>
       </li> 
 
       <li class="nav-item">
         <a class="nav-link" href="/register">
-          <i class="fas fa-fw fa-user-plus text-success"></i>
+          <i class="fas fa-fw fa-user-plus"></i>
           <span>Register Child</span></a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-question text-danger"></i>
-          <span>FAQ</span></a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-comments text-info"></i>
-          <span>Feedback</span></a>
       </li>
     </ul>
 
-    <div id="content-wrapper" style="background-image: linear-gradient(#3280e4, #584dc3);">
+    <div id="content-wrapper" style="background:white;">
 
       <div class="container-fluid">
 
       <h2>Welcome To ClaimChain! </h2>
     
       <hr>
-      <a class="btn btn-dark" style="text-decoration:none; color:white;" href="/register">Register Child</a>
+        <div>
+      <div class="auth__form_actions">
+        <a href="/register" class="btn btn-primary btn-lg btn-block">
+            Register Child
+        </a>
+        </div>
       <br><br><br>
-      <a class="btn btn-dark" style="text-decoration:none;" href="/addparent">Register Parent</a>
+      <div class="auth__form_actions">
+        <a href="/addparent" class="btn btn-primary btn-lg btn-block">
+            Register Parent
+        </a>
+        </div>
+      </div>
       <!-- /.container-fluid -->
 
       <!-- Sticky Footer -->
