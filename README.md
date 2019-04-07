@@ -15,7 +15,7 @@
 ------------------------------------------
 ### Features
 
-- `Safe` as all the credentials are encrypted using symmetric encryption.
+- `Safe` as all the credentials are encrypted using asymmetric encryption.
 - `Reliable` as all the data is stored in a decentralized way.
 - `Efficient` considering the scalability factor, data gets stored off chain without compromising security.
 
