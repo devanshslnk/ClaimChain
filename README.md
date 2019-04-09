@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="" rel="noopener">
- <img max-width=300px src="./assets/images/logocc.png" alt="ClaimChain-logo"></a>
+    <img max-width=300px src="./assets/images/logocc.png" alt="ClaimChain-logo"></img></a>
 </p>
 
 <h3 align="center">Family Tree on Blockchain</h3>
@@ -25,7 +25,7 @@
 <div align="center">
 
 <br>
-<h1>Signup</h1>
+<h1>Registration</h1>
 <p align="center">
 <img src ="./assets/images/demo1.gif" max-width = 600px>
 </p>
